@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -39,7 +40,15 @@ const plugins = [
       context: sourcePath,
     },
   }),
+  ...isProduction ? [] : [
+    new HtmlWebpackPlugin({
+      template: path.join(sourcePath, 'index.html'),
+      path: buildPath,
+      filename: 'index.html',
+    }),
+  ]
 ];
+
 
 // Common rules
 const rules = [
@@ -53,7 +62,7 @@ const rules = [
   {
     test: /\.(png|gif|jpg|svg)$/,
     include: imgPath,
-    use: 'url-loader?limit=20480&name=assets/[name].[ext]',
+    use: 'url-loader?limit=20480&name=build/assets/[name].[ext]',
   },
 ];
 
@@ -156,7 +165,7 @@ module.exports = {
   },
   plugins,
   devServer: {
-    contentBase: isProduction ? './' : './source',
+    contentBase: isProduction ? './build' : './source',
     historyApiFallback: true,
     port: 3000,
     compress: isProduction,
