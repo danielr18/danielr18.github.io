@@ -7,8 +7,10 @@ import 'babel-polyfill';
 import logger from 'dev/logger';
 
 import rootReducer from 'reducers';
-import Routes from 'routes';
 import DevTools from 'dev/redux-dev-tools';
+
+import App from 'views/App';
+import Dashboard from 'views/Dashboard';
 
 // Load SCSS
 import '../scss/app.scss';
@@ -46,9 +48,9 @@ if (isProduction) {
 ReactDOM.render(
   <Provider store={ store }>
     { isProduction ?
-      <Routes /> :
+      <App><Dashboard /></App> :
       <div>
-        <Routes />
+        <App><Dashboard /></App>
         <DevTools />
       </div> }
   </Provider>,

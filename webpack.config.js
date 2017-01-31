@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -27,11 +26,6 @@ const plugins = [
     },
   }),
   new webpack.NamedModulesPlugin(),
-  new HtmlWebpackPlugin({
-    template: path.join(sourcePath, 'index.html'),
-    path: buildPath,
-    filename: 'index.html',
-  }),
   new webpack.LoaderOptionsPlugin({
     options: {
       postcss: [
