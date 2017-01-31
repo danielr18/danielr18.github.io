@@ -30,7 +30,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: path.join(sourcePath, 'index.html'),
     path: buildPath,
-    filename: '../index.html',
+    filename: isProduction ? '../index.html' : 'index.html',
   }),
   new webpack.LoaderOptionsPlugin({
     options: {
@@ -147,7 +147,7 @@ module.exports = {
   },
   output: {
     path: buildPath,
-    publicPath: 'build/',
+    publicPath: isProduction ? 'build/' : '/',
     filename: 'app.js',
   },
   module: {

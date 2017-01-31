@@ -73,8 +73,6 @@ export default class Dashboard extends Component {
         <hr />
         <div>
           <h3>Background image</h3>
-          <div className='BackgroundImgExample' />
-
           <h3>Image imported to the component</h3>
           <img src={ bookImg } alt='' className='ImgExample' />
         </div>
