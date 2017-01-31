@@ -27,6 +27,11 @@ const plugins = [
     },
   }),
   new webpack.NamedModulesPlugin(),
+  new HtmlWebpackPlugin({
+    template: path.join(sourcePath, 'index.html'),
+    path: buildPath,
+    filename: '../index.html',
+  }),
   new webpack.LoaderOptionsPlugin({
     options: {
       postcss: [
@@ -40,15 +45,7 @@ const plugins = [
       context: sourcePath,
     },
   }),
-  ...isProduction ? [] : [
-    new HtmlWebpackPlugin({
-      template: path.join(sourcePath, 'index.html'),
-      path: buildPath,
-      filename: 'index.html',
-    }),
-  ]
 ];
-
 
 // Common rules
 const rules = [
@@ -62,7 +59,7 @@ const rules = [
   {
     test: /\.(png|gif|jpg|svg)$/,
     include: imgPath,
-    use: 'url-loader?limit=20480&name=build/assets/[name].[ext]',
+    use: 'url-loader?limit=20480&name=assets/[name].[ext]',
   },
 ];
 
@@ -150,7 +147,7 @@ module.exports = {
   },
   output: {
     path: buildPath,
-    publicPath: '/',
+    publicPath: 'build/',
     filename: 'app.js',
   },
   module: {
