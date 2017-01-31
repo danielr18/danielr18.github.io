@@ -156,7 +156,7 @@ module.exports = {
   },
   plugins,
   devServer: {
-    contentBase: isProduction ? './build' : './source',
+    contentBase: isProduction ? './' : './source',
     historyApiFallback: true,
     port: 3000,
     compress: isProduction,
