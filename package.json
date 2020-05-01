@@ -12,7 +12,9 @@
     "lint": "./node_modules/eslint/bin/eslint.js ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true",
     "preview": "NODE_ENV=\"production\" ./node_modules/webpack-dashboard/bin/webpack-dashboard.js -t 'Preview Mode - React-Redux Boilerplate' -- ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "hook-add": "./node_modules/prepush/bin/cli.js install",
-    "hook-remove": "./node_modules/prepush/bin/cli.js remove"
+    "hook-remove": "./node_modules/prepush/bin/cli.js remove",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
@@ -61,7 +63,8 @@
     "react-redux": "^4.4.0",
     "react-router": "^3.0.0",
     "redux": "^3.3.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "snyk": "^1.316.1"
   },
   "description": "Starter boilerplate for React and Redux, using Webpack 2",
   "repository": {
@@ -79,5 +82,8 @@
     "url": "https://github.com/Stanko/react-redux-webpack2-boilerplate/issues"
   },
   "homepage": "https://github.com/Stanko/react-redux-webpack2-boilerplate#readme",
-  "prepush" : [ "npm run lint-break-on-errors --silent" ]
+  "prepush": [
+    "npm run lint-break-on-errors --silent"
+  ],
+  "snyk": true
 }
